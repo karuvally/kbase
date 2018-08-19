@@ -1,3 +1,7 @@
+/vendor
+composer.lock
+.env
+=======
 ### Laravel ###
 vendor/
 node_modules/
