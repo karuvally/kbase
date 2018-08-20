@@ -5,16 +5,22 @@ namespace Modules\Volunteer\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Volunteer\Entities\Volunteer;
 
 class VolunteerController extends Controller
 {
+
+    public function __construct(Volunteer $volunteer) {
+        $this->volunteer = $volunteer;
+    }
     /**
      * Display a listing of the resource.
      * @return Response
      */
     public function index()
     {
-        return view('volunteer::index');
+        $volunteers = $this->volunteer->all();
+        return view('volunteer::index', compact('volunteers'));
     }
 
     /**

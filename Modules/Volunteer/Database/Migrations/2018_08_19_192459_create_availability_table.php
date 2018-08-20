@@ -19,8 +19,7 @@ class CreateAvailabilityTable extends Migration
             $table->date('available_on');
             $table->string('hours');
             $table->timestamps();
-
-            $table->foreign('volunteer_id')->references('id')->on('volunteer');
+            $table->foreign('volunteer_id')->references('id')->on('volunteers');
         });
     }
 

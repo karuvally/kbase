@@ -13,13 +13,12 @@ class CreateVolunteerTable extends Migration
      */
     public function up()
     {
-        Schema::create('volunteer', function (Blueprint $table) {
+        Schema::create('volunteers', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->string('type');
             $table->string('service');
             $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
@@ -31,6 +30,6 @@ class CreateVolunteerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('volunteer');
+        Schema::dropIfExists('volunteers');
     }
 }
