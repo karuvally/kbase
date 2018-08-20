@@ -9,19 +9,34 @@
                     </a>
                 </div>
                 <div class="login-form">
-                    <form>
+                <?php if($errors->has('err_msg')): ?>
+<div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+  <?php echo e($errors->first('err_msg')); ?>
+
+  </div>
+<?php endif; ?>
+
+                    <form action="/login_frm" method="post"  >
+                    <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
                         <div class="form-group">
                             <label>Email address</label>
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="email" class="form-control" placeholder="Email" name="username">
+                            <?php if($errors->has('username')): ?>
+                           <p><?php echo e($errors->first('username')); ?></p>
+                           <?php endif; ?>
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" class="form-control" placeholder="Password">
-                        </div>
+                            <input type="password" class="form-control" placeholder="Password" name="password">
+                            <?php if($errors->has('password')): ?>
+                          <p><?php echo e($errors->first('password')); ?></p>
+                           <?php endif; ?>
+                       </div>
+                       
                         <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Remember Me
-                            </label>
                             <label class="pull-right">
                                 <a href="#">Forgotten Password?</a>
                             </label>
