@@ -10,19 +10,33 @@
                     </a>
                 </div>
                 <div class="login-form">
-                    <form>
+                @if($errors->has('err_msg'))
+<div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+  {{$errors->first('err_msg')}}
+  </div>
+@endif
+
+                    <form action="/login_frm" method="post"  >
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <label>Email address</label>
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="email" class="form-control" placeholder="Email" name="username">
+                            @if($errors->has('username'))
+                           <p>{{$errors->first('username')}}</p>
+                           @endif
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" class="form-control" placeholder="Password">
-                        </div>
+                            <input type="password" class="form-control" placeholder="Password" name="password">
+                            @if($errors->has('password'))
+                          <p>{{$errors->first('password')}}</p>
+                           @endif
+                       </div>
+                       
                         <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Remember Me
-                            </label>
                             <label class="pull-right">
                                 <a href="#">Forgotten Password?</a>
                             </label>

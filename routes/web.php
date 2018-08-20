@@ -16,7 +16,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', 'user_module@dash_view');
-
+Route::post('/login_frm','user_module@login');
+Route::get('/user/dashboard','user_module@dash');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
