@@ -10,12 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*Route::get('/', function () {
-    return Redirect::to('http://149.56.42.47');
-});*/
 Route::get('/', function () {
-    return view('user/user_registration');
+    return Redirect::to('http://149.56.42.47');
 });
+/*Route::get('/', function () {
+    return view('user/user_registration');
+});*/
 Route::get('/signin', function () {
     return view('login');
 });
