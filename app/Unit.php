@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class stocks extends Model
+class Unit extends Model
 {
     //
 }
