@@ -21,11 +21,10 @@ class CategoryController extends Controller
             $data['meta']['message'] = "Inventory categories fetched successfully";
             $data['data'] = $categories;
             return response($data, 200);
-        } else {
-            $data['meta']['status'] = 0;
-            $data['meta']['message'] = "No Inventory categories found.";
-            return response($data, 404);
         }
+        $data['meta']['status'] = 0;
+        $data['meta']['message'] = "No Inventory categories found.";
+        return response($data, 404);
     }
 
     /**
@@ -37,7 +36,7 @@ class CategoryController extends Controller
     {
         $v = Validator::make($request->all(), [
             'parent_id' => 'numeric',
-            'name' => 'required',
+            'name' => 'required|max:255',
         ]);
         if ($v->fails()) {
             $data['meta']['status'] = 0;
