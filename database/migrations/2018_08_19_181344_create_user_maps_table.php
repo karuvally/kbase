@@ -15,9 +15,9 @@ class CreateUserMapsTable extends Migration
     {
         Schema::create('user_maps', function (Blueprint $table) {
             $table->increments('map_id');
-            $table->integer('group_id')->unsigned();
+            $table->integer('group_id');
             $table->foreign('group_id')->references('group_id')->on('user_groups')->onDelete('cascade');
-            $table->integer('permission_id')->unsigned();
+            $table->integer('permission_id');
             $table->foreign('permission_id')->references('permission_id')->on('user_permissions')->onDelete('cascade');
 
             $table->timestamps();

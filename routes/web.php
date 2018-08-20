@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('login');
 });
 
-
+Route::get('/dashboard', 'user_module@dash_view');
 
 Auth::routes();
 
