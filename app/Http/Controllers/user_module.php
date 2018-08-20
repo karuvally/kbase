@@ -94,14 +94,17 @@ class user_module extends Controller
 public function create_user_page(Request $request){
   return view('user.user_registration');
 }
+
       public function create_user(Request $request){
         $data=Input::except(array('_token'));
+      
         $rule=array('name'=>'required','city'=>'required','district'=>'required','state'=>'required','address'=>'required','phone_no'=>'required','password'=>'required','username'=>'required','role_id'=>'required','gender'=>'required','age'=>'required');
-       // $message=array('stagename.required'=>'The stagename cant empty','description.required'=>'Enter description');
+      // $message=array('stagename.required'=>'The stagename cant empty','description.required'=>'Enter description');
        
         $validator=Validator::make($data,$rule);
         if($validator->fails()){
-            return Redirect::to('user/dashboard')->withErrors($validator);
+          print_r("error");
+           // return Redirect::to('user/create_user')->withErrors($validator);
         }
         //print_r($user_details);
         if(DB::insert('insert into users (name,address,city,district,state,phone_no,password,username,role,gender,age) values(?,?,?,?,?,?,?,?,?,?,?)',[$request->name,$request->address,$request->city,$request->district,$request->state,$request->phone_no,$request->password,$request->username,$request->role_id,$request->gender,$request->age])){

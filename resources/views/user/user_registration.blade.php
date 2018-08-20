@@ -2,16 +2,13 @@
 @section('title','Registration')
 @section('content')
 <div class="login-form">
-                    <form action="/login_frm" method="post"  >
+                    <form action="/user/create_user_form" method="post"  >
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                             <label>Full Name</label>
                             <input type="text" class="form-control" placeholder="Full Name" name="name">
                         </div>
-                        <div class="form-group">
-                            <label>User Name</label>
-                            <input type="text" class="form-control" placeholder="User Name" name="username">
-                        </div>
+               
                         <div class="form-group">
                             <label>Email address</label>
                             <input type="email" class="form-control" placeholder="Email" name="username">
@@ -35,6 +32,11 @@
                         <div class="form-group">
                             <label>State</label>
                             <input type="text" class="form-control" placeholder="State" name="state">
+                        </div>
+
+                         <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="text" class="form-control" placeholder="phone mumber" name="phone_no">
                         </div>
                         <?php $role_list=DB::select('select * from roles');?>
                         <div class="row form-group">
@@ -73,11 +75,11 @@
                             <label>Age</label>
                             <input type="number" class="form-control"  name="age">
                         </div>
-                        <div class="checkbox">
+                     <!--   <div class="checkbox">
                             <label>
                                 <input type="checkbox"> Agree the terms and policy
                             </label>
-                        </div>
+                        </div>-->
                         <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>
                     </form>
                 </div>
