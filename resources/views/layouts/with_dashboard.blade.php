@@ -63,7 +63,7 @@
                         @foreach($sub_permissions as $value1)
                               <?php $tmp=$value1->permission_name;?>
                               @if($role_permission[0]->$tmp == 1 and $value1->path !='')
-                            <li><i class="fa fa-puzzle-piece"></i><a href="ui-buttons.html">{{$value1->element}}</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href= "{{$value1->path}}">{{$value1->element}}</a></li>
                             @endif
                               @endforeach
                         </ul>
