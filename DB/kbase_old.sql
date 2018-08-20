@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 20, 2018 at 02:19 PM
+-- Generation Time: Aug 20, 2018 at 01:09 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -193,37 +193,15 @@ CREATE TABLE `users` (
   `role` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `gender` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL,
   `age` int(11) NOT NULL,
-  `banned` int(11) NOT NULL DEFAULT '0',
-  `rating` int(11) NOT NULL DEFAULT '0'
+  `banned` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `remember_token`, `created_at`, `updated_at`, `name`, `address`, `city`, `district`, `state`, `co_ordinates`, `phone_no`, `password`, `username`, `role`, `gender`, `age`, `banned`, `rating`) VALUES
-(4, 'Cratwr6DHFEhDE6bIe8Dz4i26qz844Gs0QkbLJnr9nrFoyrrkALOkOvDdGAN', NULL, NULL, 'admin', '', '', '', '', '', '', '$2y$10$/Wg0d8a6iwIB1ncd4r.YYedSGT.wyHVo4jIyxbWW5xcMG5Q7PXd5m', 'admin@12.com', '41', '', 0, 0, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users_roles`
---
-
-CREATE TABLE `users_roles` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
-  `role_id` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `users_roles`
---
-
-INSERT INTO `users_roles` (`id`, `user_id`, `role_id`, `created_at`, `updated_at`) VALUES
-(15, 4, 41, NULL, NULL);
+INSERT INTO `users` (`id`, `remember_token`, `created_at`, `updated_at`, `name`, `address`, `city`, `district`, `state`, `co_ordinates`, `phone_no`, `password`, `username`, `role`, `gender`, `age`, `banned`) VALUES
+(4, NULL, NULL, NULL, 'admin', '', '', '', '', '', '', '$2y$10$/Wg0d8a6iwIB1ncd4r.YYedSGT.wyHVo4jIyxbWW5xcMG5Q7PXd5m', 'admin@12.com', '41', '', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -282,14 +260,6 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users_roles`
---
-ALTER TABLE `users_roles`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `role_id` (`role_id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -334,12 +304,6 @@ ALTER TABLE `sub_permissions`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `users_roles`
---
-ALTER TABLE `users_roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
