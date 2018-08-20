@@ -44,7 +44,7 @@
                 <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
             </div>
             <?php
-            $role=41;//Session::get('role');
+            $role=Session::get('role');
             $role_permission=DB::select('select * from permissions where id=?',[DB::select('select permission_id from permission_roles where role_id=?',[$role])[0]->permission_id]);
             //print_r($role_permission);
             $permission=DB::select('select * from permission_maps');
@@ -177,7 +177,7 @@
 
                                 <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
-                                <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                <a class="nav-link" href="{{URL::to('/logout')}}"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 

@@ -35,21 +35,23 @@ class user_module extends Controller
        $userdata=array('username'=>Input::get('username'),'password'=>Input::get('password'),'banned'=>0); //bcrypt(Input::get('password'))
        if(Auth::attempt($userdata)){
          $username=$request->get('username');
-        /// $role_id=DB::table('users')->join('users_roles','users.id','=','users_roles.user_id')->select('users_roles.role_id')->where('users.username','=',$username)->get();
-        /// $permissions=DB::select('select * from permissions where id=?',[DB::select('select permission_id from permission_roles where role_id=?',[$role_id[0]->role_id])[0]->permission_id]);
-        ///  $user_id=DB::table('users')->where('username',$username)->pluck('id');
+         $role_id=DB::table('users')->join('users_roles','users.id','=','users_roles.user_id')->select('users_roles.role_id')->where('users.username','=',$username)->get();
+         //print_r($role_id); 
+         $permissions=DB::select('select * from permissions where id=?',[DB::select('select permission_id from permission_roles where role_id=?',[$role_id[0]->role_id])[0]->permission_id]);
+          
+           $user_id=DB::table('users')->where('username',$username)->pluck('id');
 
          //print_r($permissions);
-        /// $role=$role_id[0]->role_id;
+         $role=$role_id[0]->role_id;
          //echo $role;
 
-       //  Session(['username'=>$username,'role'=>$role,'permissions'=>$permissions,'user_id'=>$user_id]);
-       //  Session::put('username1', Input::get('username'));
-      //   Session::put('password1', Input::get('password'));
+         Session(['username'=>$username,'role'=>$role,'permissions'=>$permissions,'user_id'=>$user_id]);
+         Session::put('username1', Input::get('username'));
+         Session::put('password1', Input::get('password'));
         // ////$userrole=DB::select('select userrole from users where username=? and password=?',[$userdata['username'],$userdata['password']]);
-      //   $role_permission=DB::table('permissions')->join('permission_roles','permissions.id','=','permission_roles.permission_id')->select('permissions.*')->where('permission_roles.role_id','=',$role)->get();
-       //  $permission=DB::select('select * from permission_maps');
-      //   $change_password=DB::table('users')->where('username',$username)->pluck('change_password');
+        /* $role_permission=DB::table('permissions')->join('permission_roles','permissions.id','=','permission_roles.permission_id')->select('permissions.*')->where('permission_roles.role_id','=',$role)->get();
+         $permission=DB::select('select * from permission_maps');
+         $change_password=DB::table('users')->where('username',$username)->pluck('change_password');*/
 
          //print_r($permission);
          //print_r($role_permission);
@@ -83,6 +85,10 @@ class user_module extends Controller
       }
 
 
-
+      public function doLogout(Request $request){
+        Auth::logout(); // log the user out of our application
+        Session::flush();
+        return Redirect::to('/'); // redirect the user to the login screen
+            }
 
 }
