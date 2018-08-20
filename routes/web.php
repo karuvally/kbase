@@ -15,4 +15,8 @@ Route::get('/', function () {
     return view('layouts.master');
 });
 
+Route::get('/dashboard', 'user_module@dash_view');
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
