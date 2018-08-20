@@ -12,16 +12,17 @@
 */
 
 Route::get('/', function () {
+    return Redirect::to('http://149.56.42.47');
+});
+Route::get('/signin', function () {
     return view('login');
 });
-
 Route::get('/dashboard', 'user_module@dash_view');
 Route::post('/login_frm','user_module@login');
 Route::get('/user/dashboard','user_module@dash');
 
-
 Route::get('logout', array('uses' => 'user_module@doLogout'));
-
+Route::get('/user/create_user','user_module@create_user');
 
 
 

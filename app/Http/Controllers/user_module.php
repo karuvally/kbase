@@ -84,11 +84,34 @@ class user_module extends Controller
      
       }
 
-
       public function doLogout(Request $request){
         Auth::logout(); // log the user out of our application
         Session::flush();
         return Redirect::to('/'); // redirect the user to the login screen
             }
+
+      //create user
+
+      public function create_user(Request $request){
+        $data=Input::except(array('_token'));
+        $rule=array('name'=>'required','city'=>'required','district'=>'required','state'=>'required','address'=>'required','phone_no'=>'required','password'=>'required','username'=>'required','role_id'=>'required','gender'=>'required','age'=>'required');
+       // $message=array('stagename.required'=>'The stagename cant empty','description.required'=>'Enter description');
+       
+        $validator=Validator::make($data,$rule);
+        if($validator->fails()){
+            return Redirect::to('user/dashboard')->withErrors($validator);
+        }
+        //print_r($user_details);
+        if(DB::insert('insert into users (name,address,city,district,state,phone_no,password,username,role,gender,age) values(?,?,?,?,?,?,?,?,?,?,?)',[$request->name,$request->address,$request->city,$request->district,$request->state,$request->phone_no,$request->password,$request->username,$request->role_id,$request->gender,$request->age])){
+          
+           // \Session::flash('flash_message','New User created successfully.');  
+            return Redirect::to('user/dashboard');
+        }
+        else{
+            $errors = array('err_msg' => 'Email and/or password invalid.');
+            \Session::flash('error_message','Database encountered some error. Please try again');
+            return Redirect::to('user/create_user')->withErrors($errors);
+        }
+      }
 
 }
