@@ -16,8 +16,8 @@ class CreatePermissionMapsTable extends Migration
         Schema::create('permission_maps', function (Blueprint $table) {
             $table->increments('id');
             $table->string('permission_name', 50);
-            $table->string('path');
-            $table->string('element');
+            $table->string('path', 50);
+            $table->string('element', 50);
             $table->timestamps();
         });
     }

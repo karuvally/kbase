@@ -1,9 +1,10 @@
 @extends('layouts.master')
 
-@section('css')
+@section('styles')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 @endsection
-@section('js')
+
+@section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script>
     jQuery(document).ready(function() {
@@ -11,6 +12,7 @@
     });
     </script>
 @endsection
+
 @section('content')
 
 @if ($errors->any())
