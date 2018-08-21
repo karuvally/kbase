@@ -26,6 +26,11 @@ Route::get('/user/dashboard', 'user_module@dash_view');
 Route::post('/login_frm', 'user_module@login');
 //Route::get('/user/dashboard','user_module@dash');
 
+Route::group(['middleware' => ['web']], function () {
+    Route::resource('camps', 'CampController');
+});
+
+    // Route::get('camp/{camp}', ['as' => 'inventory.stock.camp', 'uses' => 'ItemController@campStock']);
 Route::group(['middleware' => 'checkuser'], function () {
     Route::get('logout', array('uses' => 'user_module@doLogout'));
     Route::get('/user/create_user', 'user_module@create_user_page');
