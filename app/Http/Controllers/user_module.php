@@ -107,8 +107,20 @@ public function create_user_page(Request $request){
            // return Redirect::to('user/create_user')->withErrors($validator);
         }*/
        // print_r($validator);
-        if(DB::insert('insert into users (name,address,city,district,state,phone_no,password,username,role,gender,age) values(?,?,?,?,?,?,?,?,?,?,?)',[$request->name,$request->address,$request->city,$request->district,$request->state,$request->phone_no,$request->password,$request->username,$request->role,$request->radios,$request->age])){
+       $new_pass=Hash::make($request->password);
+      // $current_user=Session::get('user_id');
+     //  if(DB::insert('insert into users(username,password,email,office_id,role_id,report_to, district_id, sub_district_id, edu_district_id, school_code, designation_id,created_by)values(?,?,?,?,?,?,?,?,?,?,?,?)',[$request->username, $new_pass, $request->email, $request->users_office,$request->usergroup,$request->reporting_office, $request->district, $request->sub_district, $request->edu_district, $request->school,$request->designation,$current_user[0]])) {
+   
+     // DB::insert('insert into user_details (username) values (?)',[$request->username]);
+     //      return Redirect::to('user/create_user');
+
+
+        if(DB::insert('insert into users (name,address,city,district,state,phone_no,password,username,role,gender,age) values(?,?,?,?,?,?,?,?,?,?,?)',[$request->name,$request->address,$request->city,$request->district,$request->state,$request->phone_no,$new_pass,$request->username,$request->role,$request->radios,$request->age])){
          // print_r("inserted");
+         $user_id=DB::select('select max(id) as id from users');
+   
+         DB::insert('insert into users_roles (user_id, role_id) values (?,?)',[$user_id[0]->id,$request->role]);
+
             \Session::flash('flash_message','New User created successfully.');  
             return Redirect::to('user/dashboard');
         }
