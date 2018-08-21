@@ -24,6 +24,7 @@
     <link href="{{URL::asset('assets/css/lib/vector-map/jqvmap.min.css')}}" rel="stylesheet">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    @yield('css')
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
@@ -70,6 +71,7 @@
             } );
         } )( jQuery );
     </script>
+    @yield('js')
 
 </body>
 </html>

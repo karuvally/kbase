@@ -23,5 +23,9 @@ Route::post('/login_frm','user_module@login');
 Route::get('item/{id}/{camp}', ['as' => 'inventory.stock', 'uses' => 'ItemController@stock']);
 Route::put('item/{id}/{camp}', ['as' => 'inventory.stock.update', 'uses' => 'ItemController@stockUpdate']);
 
+Route::group(['middleware' => ['web']], function () {
+    Route::resource('camps', 'CampController');
+});
+
     // Route::get('camp/{camp}', ['as' => 'inventory.stock.camp', 'uses' => 'ItemController@campStock']);
 
