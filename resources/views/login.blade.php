@@ -35,7 +35,7 @@
                           <p>{{$errors->first('password')}}</p>
                            @endif
                        </div>
-                       
+
                         <div class="checkbox">
                             <label class="pull-right">
                                 <a href="#">Forgotten Password?</a>
