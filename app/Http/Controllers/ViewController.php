@@ -16,4 +16,10 @@ class ViewController extends Controller
     {
         return view('user.user_list');
     }
+    public function getInventoryAdd(){
+        return view('inventory.inventory_add');
+    }
+    public function getInventoryCamps(){
+        return view('inventory.inventory_camps');
+    }
 }
