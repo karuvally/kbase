@@ -76,19 +76,60 @@ class user_module extends Controller
      }
     }
 
-    public function dash(){
+   /* public function dash(){
        // {{ $role=Session::get('role'); }}
         //$role_permission=DB::table('permissions')->join('permission_roles','permissions.id','=','permission_roles.permission_id')->select('permissions.*')->where('permission_roles.role_id','=',$role)->get();
       //  $permission=DB::select('select * from permission_maps');
        return view('user.user_dashboard');//,compact('role_permission'))->with('permission',$permission);
      
-      }
-
+      }*/
 
       public function doLogout(Request $request){
         Auth::logout(); // log the user out of our application
         Session::flush();
-        return Redirect::to('/'); // redirect the user to the login screen
+        return Redirect::to('/signin'); // redirect the user to the login screen
             }
 
+      //create user
+public function create_user_page(Request $request){
+  return view('user.user_registration');
+}
+
+      public function create_user(Request $request){
+        $data=Input::except(array('_token'));
+      
+        $rule=array('name'=>'required','city'=>'required','district'=>'required','state'=>'required','address'=>'required','phone_no'=>'required','password'=>'required','username'=>'required','role_id'=>'required','gender'=>'required','age'=>'required');
+      // $message=array('stagename.required'=>'The stagename cant empty','description.required'=>'Enter description');
+       
+        $validator=Validator::make($data,$rule);
+        if($validator->fails()){
+          print_r("error");
+           // return Redirect::to('user/create_user')->withErrors($validator);
+        }
+        //print_r($user_details);
+        if(DB::insert('insert into users (name,address,city,district,state,phone_no,password,username,role,gender,age) values(?,?,?,?,?,?,?,?,?,?,?)',[$request->name,$request->address,$request->city,$request->district,$request->state,$request->phone_no,$request->password,$request->username,$request->role_id,$request->gender,$request->age])){
+          
+           // \Session::flash('flash_message','New User created successfully.');  
+            return Redirect::to('user/dashboard');
+        }
+        else{
+            $errors = array('err_msg' => 'Email and/or password invalid.');
+            \Session::flash('error_message','Database encountered some error. Please try again');
+            return Redirect::to('user/create_user')->withErrors($errors);
+        }
+      }
+
+              //delete user
+              public function delete_user(){
+                if(Session::get('permissions')[0]->delete_user){
+               // {{ $role=Session::get('role');  }}
+               DB::delete('delete from users where id=?',[$request->id]);
+               return Redirect::to('user/dashboard');
+                }
+               
+                else{
+                    return view('error_page'); 
+                }
+            }
+    
 }
