@@ -24,4 +24,6 @@ Route::get('item/{id}/{camp}', ['as' => 'inventory.stock', 'uses' => 'ItemContro
 Route::put('item/{id}/{camp}', ['as' => 'inventory.stock.update', 'uses' => 'ItemController@stockUpdate']);
 
     // Route::get('camp/{camp}', ['as' => 'inventory.stock.camp', 'uses' => 'ItemController@campStock']);
-
+Route::get('login', 'ViewController@getLogin');
+Route::get('register', 'ViewController@getRegister');
+Route::get('user-list', 'ViewController@getUsersList');
