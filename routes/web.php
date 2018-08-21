@@ -42,5 +42,6 @@ Route::prefix('views')->group(function () {
     Route::get('login', 'ViewController@getLogin');
     Route::get('register', 'ViewController@getRegister');
     Route::get('user-list', 'ViewController@getUsersList');
-    Route::get('inventory', 'ViewController@getUsersList');
+    Route::get('inventory/add', 'ViewController@getInventoryAdd');
+    Route::get('inventory/camps', 'ViewController@getInventoryCamps');
 });
