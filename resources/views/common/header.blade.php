@@ -95,11 +95,11 @@
 
                     <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
-                    <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                    <a class="nav-link" href="{{route('logout')}}"><i class="fa fa-power -off"></i>Logout</a>
             </div>
         </div>
 
-        <div class="language-select dropdown" id="language-select">
+        {{-- <div class="language-select dropdown" id="language-select">
             <a class="dropdown-toggle" href="#" data-toggle="dropdown"  id="language" aria-haspopup="true" aria-expanded="true">
                 <i class="flag-icon flag-icon-us"></i>
             </a>
@@ -117,7 +117,7 @@
                     <i class="flag-icon flag-icon-it"></i>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
     </div>
 </div>
