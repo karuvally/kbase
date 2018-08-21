@@ -32,6 +32,9 @@ class UpdateCampsTable extends Migration
     public function down()
     {
         Schema::table('camps', function (Blueprint $table) {
+
+            $table->dropForeign('camps_area_id_foreign');
+
             $table->dropColumn('area_id');
             $table->dropColumn('location');
             $table->dropColumn('contact_details');
