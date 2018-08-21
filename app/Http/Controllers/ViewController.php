@@ -8,6 +8,10 @@ class ViewController extends Controller
     {
         return view('login');
     }
+    public function getIndex()
+    {
+        return view('home');
+    }
     public function getRegister()
     {
         return view('user.user_registration');

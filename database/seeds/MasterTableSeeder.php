@@ -11,13 +11,17 @@ class MasterTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('states')->delete();
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        DB::table('areas')->truncate();
+        DB::table('districts')->truncate();
+        DB::table('states')->truncate();
+
         DB::table('states')->insert([
             'id' => 1,
             'name' => 'Kerala',
         ]);
 
-        DB::table('districts')->delete();
         DB::table('districts')->insert([
             ['id' => 1, 'name' => 'Thiruvananthapuram', 'state_id' => 1],
             ['id' => 2, 'name' => 'Pathanamthitta', 'state_id' => 1],
@@ -37,9 +41,12 @@ class MasterTableSeeder extends Seeder
 
         foreach(range(1, 14) as $id) {
             DB::table('areas')->insert([
+                'id' => $id,
                 'name' => "Area-$id",
                 'district_id' => $id,
             ]);
         }
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
