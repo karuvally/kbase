@@ -97,19 +97,19 @@ public function create_user_page(Request $request){
 
       public function create_user(Request $request){
         $data=Input::except(array('_token'));
-      
-        $rule=array('name'=>'required','city'=>'required','district'=>'required','state'=>'required','address'=>'required','phone_no'=>'required','password'=>'required','username'=>'required','role_id'=>'required','gender'=>'required','age'=>'required');
+     // print_r($data);
+     /*   $rule=array('name'=>'required','city'=>'required','district'=>'required','state'=>'required','address'=>'required','phone_no'=>'required','password'=>'required','username'=>'required','role_id'=>'required','gender'=>'required','age'=>'required');
       // $message=array('stagename.required'=>'The stagename cant empty','description.required'=>'Enter description');
        
         $validator=Validator::make($data,$rule);
         if($validator->fails()){
           print_r("error");
            // return Redirect::to('user/create_user')->withErrors($validator);
-        }
-        //print_r($user_details);
-        if(DB::insert('insert into users (name,address,city,district,state,phone_no,password,username,role,gender,age) values(?,?,?,?,?,?,?,?,?,?,?)',[$request->name,$request->address,$request->city,$request->district,$request->state,$request->phone_no,$request->password,$request->username,$request->role_id,$request->gender,$request->age])){
-          
-           // \Session::flash('flash_message','New User created successfully.');  
+        }*/
+       // print_r($validator);
+        if(DB::insert('insert into users (name,address,city,district,state,phone_no,password,username,role,gender,age) values(?,?,?,?,?,?,?,?,?,?,?)',[$request->name,$request->address,$request->city,$request->district,$request->state,$request->phone_no,$request->password,$request->username,$request->role,$request->radios,$request->age])){
+         // print_r("inserted");
+            \Session::flash('flash_message','New User created successfully.');  
             return Redirect::to('user/dashboard');
         }
         else{
