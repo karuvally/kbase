@@ -38,4 +38,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
     // Route::get('camp/{camp}', ['as' => 'inventory.stock.camp', 'uses' => 'ItemController@campStock']);
-
+Route::get('login', 'ViewController@getLogin');
+Route::get('register', 'ViewController@getRegister');
+Route::get('user-list', 'ViewController@getUsersList');
