@@ -6,8 +6,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> @yield('title')</title>
-    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
+    <title>Disaster Relief Management | @yield('title')</title>
+    <meta name="description" content="Disaster Relief Management">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="apple-icon.png">

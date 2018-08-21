@@ -1,5 +1,9 @@
 @extends('../layouts.without_dashboard')
 
+@section('title')
+Login
+@endsection
+
 @section('content')
 <div class="sufee-login d-flex align-content-center flex-wrap">
     <div class="container">
